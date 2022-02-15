@@ -1,0 +1,98 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+.TodoContainer {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+}
+
+.Nav-bar {
+  background-color: rgb(88, 157, 160);
+  color: #fff;
+  padding: 30px 15px;
+  height: 100vh;
+  width: 26%;
+}
+
+.Nav-bar ul {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  list-style-type: none;
+}
+
+.Nav-bar li {
+  cursor: pointer;
+}
+
+.cancel {
+  margin-bottom: 30px;
+  font-size: 3em;
+}
+
+.header {
+  font-size: 4em;
+  opacity: 0.4;
+  margin-top: -5em;
+  margin-bottom: 10px;
+  padding: 15px;
+  text-align: center;
+  width: 70vw;
+}
+
+.input-todo {
+  padding: 15px 0 15px 25px;
+  position: relative;
+}
+
+.input-todo input {
+  height: 50px;
+  width: 80%;
+  border-radius: 18px;
+  padding-left: 15px;
+  font-size: 1.2em;
+  box-shadow: 2px 2px 7px 4px rgba(204, 198, 198, 0.8);
+  -webkit-box-shadow: 2px 2px 7px 4px rgba(204, 198, 198, 0.8);
+  -moz-box-shadow: 2px 2px 7px 4px rgba(204, 198, 198, 0.8);
+  -o-box-shadow: 2px 2px 7px 4px rgba(204, 198, 198, 0.8);
+  outline: none;
+  border: none;
+}
+
+.input-todo img {
+  position: absolute;
+  right: 80px;
+  top: 33px;
+}
+
+.todo-item {
+  list-style-type: none;
+  font-size: 1.3em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 95%;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  padding: 15px 25px;
+  margin: 20px 0;
+  border: 2px solid gold;
+}
+
+li {
+  list-style-type: none;
+}
