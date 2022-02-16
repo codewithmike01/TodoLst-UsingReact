@@ -42,7 +42,6 @@ const App = () => {
   );
 
   const handleOnchange = (id) => {
-    console.log('in check');
     const updateCheck = task.todos.map((item) => {
       if (item.id === id) {
         item.completed = !item.completed;
