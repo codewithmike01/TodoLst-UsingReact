@@ -5,7 +5,7 @@
 /* eslint-disable react/no-unused-state */
 import './App.css';
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { HashRouter as Router, Route, Routes } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import NavBar from './components/NavBar';
 import About from './components/About';
@@ -33,6 +33,13 @@ const App = () => {
     const temp = JSON.stringify(task.todos);
     localStorage.setItem('todos', temp);
   }, [task.todos]);
+
+  useEffect(
+    () => () => {
+      console.log('Cleaning up...');
+    },
+    [],
+  );
 
   const handleOnchange = (id) => {
     console.log('in check');

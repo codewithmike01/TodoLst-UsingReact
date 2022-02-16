@@ -33,6 +33,7 @@ export default function TodoItem(props) {
                 type="checkbox"
                 onChange={() => change(todo.id)}
                 defaultChecked={todo.completed}
+                className="check-pos"
               />
 
               <p>{todo.title}</p>

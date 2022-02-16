@@ -93,6 +93,7 @@ li {
 .main-content {
   margin-top: 25em;
   margin-left: -65px;
+  z-index: 4;
 }
 
 .header {
