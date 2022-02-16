@@ -1,5 +1,6 @@
 import React from 'react';
 import propTypes from 'prop-types';
+import { FaPlusCircle } from 'react-icons/fa';
 
 export default function InputTodo(props) {
   const { title } = props;
@@ -16,7 +17,7 @@ export default function InputTodo(props) {
           onChange={(e) => textChange(e)}
         />
         <button type="submit">
-          <img src="./src/Assets/AddItem.png" alt="Add item" />
+          <FaPlusCircle />
         </button>
       </form>
     </div>

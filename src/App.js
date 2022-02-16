@@ -4,72 +4,78 @@
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/no-unused-state */
 import './App.css';
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { v4 as uuidv4 } from 'uuid';
 import NavBar from './components/NavBar';
+import About from './components/About';
 import Header from './components/Header';
 import InputTodo from './components/InputTodo';
 import TodoItem from './components/TodoItem';
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      todos: [
-        {
-          id: uuidv4(),
-          title: 'Setup development environment',
-          completed: true,
-        },
-        {
-          id: uuidv4(),
-          title: 'Develop Website and add content',
-          completed: false,
-        },
-        {
-          id: uuidv4(),
-          title: 'Deploy to live Servver',
-          completed: false,
-        },
-      ],
-      title: ' ',
-    };
-  }
+const App = () => {
+  const [task, setState] = useState({
+    todos: [],
+    title: ' ',
+    editingId: 0,
+  });
 
-  handleOnchange = (id) => {
-    const updateCheck = this.state.todos.map((item) => {
+  useEffect(() => {
+    const temp = localStorage.getItem('todos');
+    const loadedTodos = JSON.parse(temp);
+    setState((prevState) => ({
+      ...prevState,
+      todos: loadedTodos || [],
+    }));
+  }, [setState]);
+
+  useEffect(() => {
+    const temp = JSON.stringify(task.todos);
+    localStorage.setItem('todos', temp);
+  }, [task.todos]);
+
+  const handleOnchange = (id) => {
+    console.log('in check');
+    const updateCheck = task.todos.map((item) => {
       if (item.id === id) {
         item.completed = !item.completed;
         return item;
       }
       return item;
     });
-    this.setState(updateCheck);
+    setState((prevState) => ({
+      ...prevState,
+      todos: updateCheck,
+    }));
   };
 
-  handleDeleteList = (id) => {
-    const updateDeleted = this.state.todos.filter((item) => {
+  const handleDeleteList = (id) => {
+    const updateDeleted = task.todos.filter((item) => {
       if (item.id !== id) {
         return item;
       }
       return 0;
     });
-    this.setState({
+    setState({
       todos: updateDeleted.map((item) => item),
     });
   };
 
-  handleTextChange = (e) => {
-    this.setState(() => ({
+  const handleTextChange = (e) => {
+    setState((prevState) => ({
+      ...prevState,
       title: e.target.value,
     }));
   };
 
-  handleSubmit = (e, todo) => {
+  const handleSubmit = (e, todo) => {
     e.preventDefault();
 
-    if (this.state.title.trim()) {
-      this.setState({ title: '' });
+    if (task.title.trim()) {
+      setState((prevState) => ({
+        ...prevState,
+        title: '',
+      }));
 
       const newTodo = {
         id: uuidv4(),
@@ -77,37 +83,74 @@ class App extends Component {
         completed: false,
       };
 
-      this.setState({
-        todos: [...this.state.todos, newTodo],
-      });
+      setState((prevState) => ({
+        ...prevState,
+        todos: [...task.todos, newTodo],
+      }));
     }
   };
 
-  handleDoubleClick = () => {
-    console.log('hello');
+  const handleDoubleClick = (idTag) => {
+    setState((prevState) => ({
+      ...prevState,
+      editingId: idTag,
+    }));
   };
 
-  render() {
-    return (
+  const handleSetupUpdate = (updateTitle, id) => {
+    setState((prevState) => ({
+      ...prevState,
+      todos: task.todos.map((todo) => {
+        if (todo.id === id) {
+          todo.title = updateTitle;
+        }
+        return todo;
+      }),
+    }));
+  };
+
+  const handleUpdateDone = (event) => {
+    if (event.key === 'Enter') {
+      setState((prevState) => ({
+        ...prevState,
+        editingId: 0,
+      }));
+    }
+  };
+
+  return (
+    <Router>
       <div className="TodoContainer">
         <NavBar />
-        <div>
-          <Header />
-          <InputTodo
-            title={this.state.title}
-            textChange={this.handleTextChange}
-            submit={this.handleSubmit}
+        <Routes>
+          <Route
+            path="/"
+            element={
+              // eslint-disable-next-line react/jsx-wrap-multilines
+              <div className="main-content">
+                <Header />
+                <InputTodo
+                  title={task.title}
+                  textChange={handleTextChange}
+                  submit={handleSubmit}
+                />
+                <TodoItem
+                  value={task.todos}
+                  idTag={task.editingId}
+                  change={handleOnchange}
+                  deleted={handleDeleteList}
+                  Click={handleDoubleClick}
+                  setUpdate={handleSetupUpdate}
+                  keyDone={handleUpdateDone}
+                />
+              </div>
+            }
           />
-          <TodoItem
-            value={this.state.todos}
-            change={this.handleOnchange}
-            deleted={this.handleDeleteList}
-            Click={this.handleDoubleClick}
-          />
-        </div>
+          <Route path="/about" element={<About />} />
+        </Routes>
       </div>
-    );
-  }
-}
+    </Router>
+  );
+};
 
 export default App;
