@@ -4,6 +4,10 @@
 
 > This is a simple Todo-List app created using React, it performs operations like, allowing users to input list of todos, edit a todoList, mark a todo as completed and also delete a todo.
 
+<br> <br>
+
+![ScreeShot](https://github.com/Ginohmk/TodoLst-UsingReact/blob/last-review/src/screenShot/TodoListImage.png)
+
 ## Built With
 
 - React
