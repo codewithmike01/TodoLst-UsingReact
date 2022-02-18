@@ -34,13 +34,6 @@ const App = () => {
     localStorage.setItem('todos', temp);
   }, [task.todos]);
 
-  useEffect(
-    () => () => {
-      console.log('Cleaning up...');
-    },
-    [],
-  );
-
   const handleOnchange = (id) => {
     const updateCheck = task.todos.map((item) => {
       if (item.id === id) {
