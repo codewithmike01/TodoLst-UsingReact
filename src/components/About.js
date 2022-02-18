@@ -9,7 +9,7 @@ export default function About() {
         ipsum Ginoh codana kanu lorem ipsum cordan mike ipsum Ginoh codana kanu
         lorem ipsum cordan mike ipsum Ginoh codana kanu lorem ipsum cordan mike
         ipsum lorem Ginoh codana kanu lorem ipsum cordan mike ipsum Ginoh codana
-        kanu lorem ipsum cordan mike ipsum Ginoh codana kanu
+        anu lorem ipsum cordan mike ipsum Ginoh codana kanu
       </p>
     </div>
   );
