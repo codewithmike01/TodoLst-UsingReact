@@ -8,8 +8,8 @@ export default function About() {
         lorem ipsum cordan mike ipsum Ginoh codana kanu lorem ipsum cordan mike
         ipsum Ginoh codana kanu lorem ipsum cordan mike ipsum Ginoh codana kanu
         lorem ipsum cordan mike ipsum Ginoh codana kanu lorem ipsum cordan mike
-        ipsum Ginoh codana kanu lorem ipsum cordan mike ipsum Ginoh codana kanu
-        lorem ipsum cordan mike ipsum Ginoh codana kanu
+        ipsum lorem Ginoh codana kanu lorem ipsum cordan mike ipsum Ginoh codana
+        kanu lorem ipsum cordan mike ipsum Ginoh codana kanu
       </p>
     </div>
   );
